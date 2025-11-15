@@ -9,23 +9,23 @@
 ## Phase 1: Setup（共同基礎）
 
 - [ ] T000 建立或更新 GitHub Project 卡片（描述 feature、設定標籤與泳道 Todo）
-- [ ] T001 建立 Spring Boot 專案骨架 `backend/src/main/java/com/example/mediajournal`
-- [ ] T002 初始化 Angular 工作區並安裝 Tailwind/NgRx/Vitest `frontend/`
-- [ ] T003 [P] 建立 `infrastructure/docker-compose.yml`（app + postgres + frontend）與 `.env.example`
-- [ ] T004 [P] 設定 lint/formatter/git hooks（`backend/pom.xml`, `frontend/package.json`, `.husky/`）
+- [X] T001 建立 Spring Boot 專案骨架 `backend/src/main/java/com/example/mediajournal`
+- [X] T002 初始化 Angular 工作區並安裝 Tailwind/NgRx/Vitest `frontend/`
+- [X] T003 [P] 建立 `infrastructure/docker-compose.yml`（app + postgres + frontend）與 `.env.example`
+- [X] T004 [P] 設定 lint/formatter/git hooks（`backend/pom.xml`, `frontend/package.json`, `.husky/`）
 
 ---
 
 ## Phase 2: Foundational（阻塞前提）
 
-- [ ] T005 建立 Flyway 基礎遷移 `backend/src/main/resources/db/migration/V1__baseline.sql`
-- [ ] T006 建立共用 domain/repository layer 並串接 PostgreSQL/H2 profiles
-- [ ] T007 實作 JWT + RBAC + 審核稽核記錄 `backend/src/main/java/com/example/mediajournal/config/SecurityConfig.java`
-- [ ] T008 [P] 建立全域錯誤處理與 API 版本設定 `backend/src/main/java/com/example/mediajournal/config/WebConfig.java`
-- [ ] T009 [P] 建立 Angular core 模組（API client、auth guard、theme service）`frontend/src/app/core/`
-- [ ] T010 [P] 建立 Tailwind design tokens 與深色/高對比/亮色主題 `frontend/src/styles/tailwind.config.ts`
-- [ ] T011 建立觀測性基礎（Micrometer + OpenTelemetry + 通知 SLA 指標）`backend/src/main/java/com/example/mediajournal/config/ObservabilityConfig.java`
-- [ ] T012 設定 JaCoCo/ESLint 報告門檻，CI 需檢查 80% 覆蓋率
+- [X] T005 建立 Flyway 基礎遷移 `backend/src/main/resources/db/migration/V1__baseline.sql`
+- [X] T006 建立共用 domain/repository layer 並串接 PostgreSQL/H2 profiles
+- [X] T007 實作 JWT + RBAC + 審核稽核記錄 `backend/src/main/java/com/example/mediajournal/config/SecurityConfig.java`
+- [X] T008 [P] 建立全域錯誤處理與 API 版本設定 `backend/src/main/java/com/example/mediajournal/config/WebConfig.java`
+- [X] T009 [P] 建立 Angular core 模組（API client、auth guard、theme service）`frontend/src/app/core/`
+- [X] T010 [P] 建立 Tailwind design tokens 與深色/高對比/亮色主題 `frontend/src/styles/tailwind.config.ts`
+- [X] T011 建立觀測性基礎（Micrometer + OpenTelemetry + 通知 SLA 指標）`backend/src/main/java/com/example/mediajournal/config/ObservabilityConfig.java`
+- [X] T012 設定 JaCoCo/ESLint 報告門檻，CI 需檢查 80% 覆蓋率
 
 Checkpoint：完成後可進入 User Story 階段，並在 Project board 將卡片移至「In Progress」。
 
