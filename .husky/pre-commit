@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+pnpm --dir frontend lint || exit 1
+pnpm --dir frontend format || exit 1
+(cd backend && ./mvnw -q com.diffplug.spotless:spotless-maven-plugin:2.43.0:check) || exit 1
