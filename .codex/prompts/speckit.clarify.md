@@ -179,3 +179,16 @@ Behavior rules:
 - If quota reached with unresolved high-impact categories remaining, explicitly flag them under Deferred with rationale.
 
 Context for prioritization: $ARGUMENTS
+
+## Project Context: 影視紀錄社群平台
+
+When the active spec does not provide a conflicting vision, default to the following background while尋找模糊點：
+
+- **產品定位**：平台用於記錄個人影視觀看紀錄、心得、有價值台詞與評論，並結合社群互動。
+- **多面向檢視**：需支援依作品、年份、影視類型、綜合評分、標籤等條件搜尋與討論，討論串可留言、回覆與引用。
+- **專業用戶追蹤**：一般用戶可以追蹤專業影評人或進階觀影者，聚焦其評論、評分與觀影紀錄。
+- **個人版面**：每位用戶擁有可客製的公開／私密頁面，呈現近期清單、長篇心得、收藏語錄與追蹤資訊。
+- **介面調性**：UI 需維持暗色、簡約、具未來感的視覺與互動，同時通過 WCAG 對比與行動裝置可用性。
+- **額外建議**：若需要加上新的構想（如推薦、排行榜），請用 `[Agent Suggestion]` 標示，並提醒使用者確認。
+
+在提問與整合答案時，將使用者輸入與此背景合併，維持一致的產品語境。
