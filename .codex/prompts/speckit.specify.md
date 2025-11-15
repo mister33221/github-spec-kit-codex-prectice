@@ -191,6 +191,19 @@ Given that feature description, do this:
 
 7. Report completion with branch name, spec file path, checklist results, and readiness for the next phase (`/speckit.clarify` or `/speckit.plan`).
 
+## Project Context: 影視紀錄社群平台
+
+Use the following product vision whenever the user brief is missing details or references “the default project”:
+
+- **核心定位**：這是用來記錄個人影視作品觀看紀錄、心得、有價值台詞與評論的長期檔案，同時帶入社群互動。紀錄需包含作品名稱、年份、影視類型、個人標籤、評分、撰寫日期與節選語錄。
+- **多面向瀏覽**：內容必須可依作品、年份、作品類型、綜合評分、標籤等條件瀏覽、搜尋與討論，討論串允許留言、回覆與引用。
+- **社群與專業用戶**：使用者可以追蹤或收藏專業影評人／進階觀影者的版面，並快速聚焦這些用戶的評價與觀看紀錄。
+- **個人版面**：每位用戶擁有可客製的公開／私密頁面，呈現近期觀影清單、長篇心得、收藏語錄與追蹤者資訊。
+- **介面風格**：整體 UI 延續「暗色、簡約、帶未來感」的色系與視覺語言，需確保可及性（WCAG 對比）、動態過渡與在行動裝置上的表現。
+- **擴充建議**：如需提出額外功能（推薦系統、排行榜等），請在需求前加上 `[Agent Suggestion]` 以明確標註來源。
+
+When the user supplies their own description, merge their intent with the context above. Never remove the `[Agent Suggestion]` tag when the idea源自你。
+
 **NOTE:** The script creates and checks out the new branch and initializes the spec file before writing.
 
 ## General Guidelines
