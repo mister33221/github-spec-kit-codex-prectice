@@ -37,3 +37,8 @@
 - **埠衝突**：後端預設 :8080、前端 :4200，如需修改請同步更新 rontend/src/app/core/api.config.ts。
 - **通知未即時更新**：確認前端 WebSocket URL 指向 ws://localhost:8080/ws/notifications，並於瀏覽器允許該連線。
 - **Testcontainers 無法啟動**：請確保 Docker Desktop 內的 WSL 整合開啟且磁碟空間足夠。
+
+## API 說明
+- 啟動後端後，可於 http://localhost:8080/docs 檢視 Swagger UI，快速瀏覽與測試 API。
+- 若需 OpenAPI JSON，路徑為 http://localhost:8080/api/docs，可搭配 pnpm exec openapi-coverage 或其他工具進行合約驗證。
+

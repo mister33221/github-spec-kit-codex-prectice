@@ -1,178 +1,149 @@
-# Tasks: 影視觀影紀錄社群平台
-
+# Tasks: 敶梯?閫敶梁??冗蝢文像??
 **Input**: Design documents from `/specs/001-create-media-journal/`  
 **Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/
 
-**Tests**: 依需求於各 User Story 加入必要的整合或 e2e 測試。  
-**Organization**: 任務依階段與 User Story 拆分，可獨立實作與驗證。
+**Tests**: 靘?瘙??User Story ?敹???? e2e 皜祈岫?? 
+**Organization**: 隞餃?靘?畾菔? User Story ??嚗?函?撖虫???霅?
+## Phase 1: Setup嚗?蝷?
 
-## Phase 1: Setup（共同基礎）
-
-- [ ] T000 建立或更新 GitHub Project 卡片（描述 feature、設定標籤與泳道 Todo）
-- [ ] T001 建立 Spring Boot 專案骨架 `backend/src/main/java/com/example/mediajournal`
-- [ ] T002 初始化 Angular 工作區並安裝 Tailwind/NgRx/Vitest `frontend/`
-- [ ] T003 [P] 建立 `infrastructure/docker-compose.yml`（app + postgres + frontend）與 `.env.example`
-- [ ] T004 [P] 設定 lint/formatter/git hooks（`backend/pom.xml`, `frontend/package.json`, `.husky/`）
-
+- [ ] T000 撱箇????GitHub Project ?∠?嚗?餈?feature?身摰?蝐方?瘜喲? Todo嚗?- [ ] T001 撱箇? Spring Boot 撠?撉冽 `backend/src/main/java/com/example/mediajournal`
+- [ ] T002 ????Angular 撌乩??銝血?鋆?Tailwind/NgRx/Vitest `frontend/`
+- [ ] T003 [P] 撱箇? `infrastructure/docker-compose.yml`嚗pp + postgres + frontend嚗? `.env.example`
+- [ ] T004 [P] 閮剖? lint/formatter/git hooks嚗backend/pom.xml`, `frontend/package.json`, `.husky/`嚗?
 ---
 
-## Phase 2: Foundational（阻塞前提）
+## Phase 2: Foundational嚗憛???
 
-- [ ] T005 建立 Flyway 基礎遷移 `backend/src/main/resources/db/migration/V1__baseline.sql`
-- [ ] T006 建立共用 domain/repository layer 並串接 PostgreSQL/H2 profiles
-- [ ] T007 實作 JWT + RBAC + 審核稽核記錄 `backend/src/main/java/com/example/mediajournal/config/SecurityConfig.java`
-- [ ] T008 [P] 建立全域錯誤處理與 API 版本設定 `backend/src/main/java/com/example/mediajournal/config/WebConfig.java`
-- [ ] T009 [P] 建立 Angular core 模組（API client、auth guard、theme service）`frontend/src/app/core/`
-- [ ] T010 [P] 建立 Tailwind design tokens 與深色/高對比/亮色主題 `frontend/src/styles/tailwind.config.ts`
-- [ ] T011 建立觀測性基礎（Micrometer + OpenTelemetry + 通知 SLA 指標）`backend/src/main/java/com/example/mediajournal/config/ObservabilityConfig.java`
-- [ ] T012 設定 JaCoCo/ESLint 報告門檻，CI 需檢查 80% 覆蓋率
-
-Checkpoint：完成後可進入 User Story 階段，並在 Project board 將卡片移至「In Progress」。
-
+- [ ] T005 撱箇? Flyway ?箇??瑞宏 `backend/src/main/resources/db/migration/V1__baseline.sql`
+- [ ] T006 撱箇??梁 domain/repository layer 銝虫葡??PostgreSQL/H2 profiles
+- [ ] T007 撖虫? JWT + RBAC + 撖拇蝔賣閮? `backend/src/main/java/com/example/mediajournal/config/SecurityConfig.java`
+- [ ] T008 [P] 撱箇??典??航炊????API ?閮剖? `backend/src/main/java/com/example/mediajournal/config/WebConfig.java`
+- [ ] T009 [P] 撱箇? Angular core 璅∠?嚗PI client?uth guard?heme service嚗frontend/src/app/core/`
+- [ ] T010 [P] 撱箇? Tailwind design tokens ?楛??擃?瘥?鈭株銝駁? `frontend/src/styles/tailwind.config.ts`
+- [ ] T011 撱箇?閫皜祆批蝷?Micrometer + OpenTelemetry + ? SLA ??嚗backend/src/main/java/com/example/mediajournal/config/ObservabilityConfig.java`
+- [ ] T012 閮剖? JaCoCo/ESLint ?勗??瑼鳴?CI ?瑼Ｘ 80% 閬???
+Checkpoint嚗????舫脣 User Story ?挾嚗蒂??Project board 撠?宏?喋n Progress??
 ---
 
-## Phase 3: User Story 1 - 建立個人觀影筆記（Priority P1，MVP）
-
-**Goal**：新增/編輯觀影紀錄、標籤、引用金句並更新個人版面。  
-**Independent Test**：於 2 分鐘內完成新增/編輯紀錄並於個人版面看到摘要。
-
+## Phase 3: User Story 1 - 撱箇??犖閫敶梁?閮?Priority P1嚗VP嚗?
+**Goal**嚗憓?蝺刻摩閫敶梁???蝐扎??券??乩蒂?湔?犖??? 
+**Independent Test**嚗 2 ???批??憓?蝺刻摩蝝?蒂?澆犖??????
 ### Tests
 
-- [ ] T013 [P] [US1] `/api/entries` 合約/整合測試 `backend/src/test/java/com/example/mediajournal/entries/EntriesApiTest.java`
-- [ ] T014 [P] [US1] 前端 e2e（建立/編輯紀錄流程）`frontend/tests/e2e/entry-flow.spec.ts`
+- [ ] T013 [P] [US1] `/api/entries` ??/?游?皜祈岫 `backend/src/test/java/com/example/mediajournal/entries/EntriesApiTest.java`
+- [ ] T014 [P] [US1] ?垢 e2e嚗遣蝡?蝺刻摩蝝??蝔?`frontend/tests/e2e/entry-flow.spec.ts`
 
 ### Implementation
 
-- [ ] T015 [P] [US1] 建立 ViewingEntry/QuoteHighlight/Tag Entities 與 repositories
-- [ ] T016 [US1] 實作 `ViewingEntryService`（引用長度、標籤批次）`backend/.../entries/ViewingEntryService.java`
-- [ ] T017 [US1] 實作 `/api/entries` Controller（GET/POST/PATCH）
-- [ ] T018 [P] [US1] 建立 Angular `entry-editor` module `frontend/src/app/features/entry-editor/`
-- [ ] T019 [US1] 建立 entry timeline component 與統計圖卡
-- [ ] T020 [US1] 實作 profile 統計/可見性 API `backend/src/main/java/com/example/mediajournal/profile/ProfileController.java`
-- [ ] T021 [US1] 建立 `ProfileSummaryService`（平均評分、常用標籤、可見性設定）
-- [ ] T022 [US1] 前端個人版面設定頁（公開/半公開/私人）
-- [ ] T023 [US1] 更新 quickstart（新增/編輯紀錄與可見性驗證）
+- [ ] T015 [P] [US1] 撱箇? ViewingEntry/QuoteHighlight/Tag Entities ??repositories
+- [ ] T016 [US1] 撖虫? `ViewingEntryService`嚗??券摨艾?蝐斗甈∴?`backend/.../entries/ViewingEntryService.java`
+- [ ] T017 [US1] 撖虫? `/api/entries` Controller嚗ET/POST/PATCH嚗?- [ ] T018 [P] [US1] 撱箇? Angular `entry-editor` module `frontend/src/app/features/entry-editor/`
+- [ ] T019 [US1] 撱箇? entry timeline component ?絞閮???- [ ] T020 [US1] 撖虫? profile 蝯梯?/?航???API `backend/src/main/java/com/example/mediajournal/profile/ProfileController.java`
+- [ ] T021 [US1] 撱箇? `ProfileSummaryService`嚗像???虜?冽?蝐扎閬扯身摰?
+- [ ] T022 [US1] ?垢?犖?閮剖????祇?/???蝘犖嚗?- [ ] T023 [US1] ?湔 quickstart嚗憓?蝺刻摩蝝???航??折?霅?
 
-Checkpoint：完成 MVP，並在 Project board 上建立/更新「US1 完成」註記。
-
+Checkpoint嚗???MVP嚗蒂??Project board 銝遣蝡??湔?S1 摰??酉閮?
 ---
 
-## Phase 4: User Story 2 - 標籤討論與即時回覆（Priority P2）
-
-**Goal**：允許用戶在作品或標籤下開啟討論串並即時互動。  
-**Independent Test**：兩個帳號在同標籤互動且看到立即更新。
-
+## Phase 4: User Story 2 - 璅惜閮????閬?Priority P2嚗?
+**Goal**嚗?閮梁?嗅雿???蝐支???閮?銝脖蒂?單?鈭??? 
+**Independent Test**嚗?董???蝐支????蝡?湔??
 ### Tests
 
-- [ ] T024 [P] [US2] `/api/discussions` + `/api/discussions/{id}/replies` 合約測試
-- [ ] T025 [P] [US2] 前端 e2e（標籤討論、引用回覆、即時更新）
+- [ ] T024 [P] [US2] `/api/discussions` + `/api/discussions/{id}/replies` ??皜祈岫
+- [ ] T025 [P] [US2] ?垢 e2e嚗?蝐方?隢??典?閬??堆?
 
 ### Implementation
 
-- [ ] T026 [P] [US2] 建立 DiscussionThread/Reply/ModerationCase migrations
-- [ ] T027 [US2] 實作 `DiscussionService`（層級回覆、引用文字）
-- [ ] T028 [US2] 實作討論 API + SSE/WebSocket 更新 `backend/.../DiscussionsController.java`
-- [ ] T029 [P] [US2] 建立 Angular `discussion-board` module
-- [ ] T030 [US2] 標籤聚合牆與引用 UI `frontend/.../tag-thread-view.component.ts`
-- [ ] T031 [US2] 通知客戶端整合（WebSocket client + 未讀徽章）
-- [ ] T032 [US2] 更新 quickstart：討論串/通知測試指南
+- [ ] T026 [P] [US2] 撱箇? DiscussionThread/Reply/ModerationCase migrations
+- [ ] T027 [US2] 撖虫? `DiscussionService`嚗惜蝝?閬??冽?摮?
+- [ ] T028 [US2] 撖虫?閮? API + SSE/WebSocket ?湔 `backend/.../DiscussionsController.java`
+- [ ] T029 [P] [US2] 撱箇? Angular `discussion-board` module
+- [ ] T030 [US2] 璅惜????撘 UI `frontend/.../tag-thread-view.component.ts`
+- [ ] T031 [US2] ?摰Ｘ蝡舀??WebSocket client + ?芾?敺賜?嚗?- [ ] T032 [US2] ?湔 quickstart嚗?隢葡/?皜祈岫??
 
 ---
 
-## Phase 5: User Story 3 - 專業用戶追蹤與專注（Priority P3）
-
-**Goal**：追蹤專業評影者、設定通知頻率、顯示加權評分與專業徽章。  
-**Independent Test**：追蹤專業帳號並在新紀錄 6 小時內收到站內通知。
-
+## Phase 5: User Story 3 - 撠平?冽餈質馱??瘜剁?Priority P3嚗?
+**Goal**嚗蕭頩文?璆剛?敶梯身摰?餌??＊蝷箏?甈???撠平敺賜??? 
+**Independent Test**嚗蕭頩文?璆剖董?蒂?冽蝝??6 撠??扳?啁??折??
 ### Tests
 
-- [ ] T033 [P] [US3] `/api/focus` 與 `/api/notifications` 合約測試
-- [ ] T034 [P] [US3] 前端 e2e（專注操作 + 通知 + 徽章）
+- [ ] T033 [P] [US3] `/api/focus` ??`/api/notifications` ??皜祈岫
+- [ ] T034 [P] [US3] ?垢 e2e嚗?瘜冽?雿?+ ? + 敺賜?嚗?
+### Implementation
+
+- [ ] T035 [P] [US3] 撱箇? FocusSubscription/Notification/Badge migrations
+- [ ] T036 [US3] 撖虫? `FocusService`嚗蕭頩扎?餌??eighted score ?亥岷嚗?- [ ] T037 [US3] 撖虫? `/api/focus` + `/api/notifications` Controller
+- [ ] T038 [US3] 撱箇?撠平?刻瞍?瘜?`backend/.../ProfessionalRecommendationJob.java`
+- [ ] T039 [US3] 撱箇?蝞∠??∪祟??API ??蝡臭???`frontend/src/app/features/admin/badge-approval/`
+- [ ] T040 [US3] 撱箇? Angular `focus-hub` module + dashboard
+- [ ] T041 [US3] ??????SLA 鋆? `backend/.../NotificationDispatcher.java`
+- [ ] T042 [US3] ?湔 quickstart嚗?瘜??/敺賜?撽?瘚?
+
+---
+
+## Phase 6: User Story 4 - 擃?澆閰?嚗riority P2嚗?
+**Goal**嚗??冗蝢斗??憭?撘嚗?靘??啣?蝝??閮??亙?? 
+**Independent Test**嚗?閰??賢?啗????啗府撘銝血???皞?
+### Tests
+
+- [ ] T043 [P] [US4] `/api/quotes/highlights` ??皜祈岫
+- [ ] T044 [P] [US4] ?垢 e2e嚗???????啗???蝷綽?
 
 ### Implementation
 
-- [ ] T035 [P] [US3] 建立 FocusSubscription/Notification/Badge migrations
-- [ ] T036 [US3] 實作 `FocusService`（追蹤、通知頻率、weighted score 查詢）
-- [ ] T037 [US3] 實作 `/api/focus` + `/api/notifications` Controller
-- [ ] T038 [US3] 建立專業推薦演算法 `backend/.../ProfessionalRecommendationJob.java`
-- [ ] T039 [US3] 建立管理員審核 API 與前端介面 `frontend/src/app/features/admin/badge-approval/`
-- [ ] T040 [US3] 建立 Angular `focus-hub` module + dashboard
-- [ ] T041 [US3] 背景通知排程與 SLA 補償 `backend/.../NotificationDispatcher.java`
-- [ ] T042 [US3] 更新 quickstart：專注/通知/徽章驗證流程
+- [ ] T045 [P] [US4] 撱箇? QuoteFavorite/QuoteAggregate migrations
+- [ ] T046 [US4] 撖虫? `QuoteWallService`嚗??湔??摨?皞??嚗?- [ ] T047 [US4] 撖虫? `/api/quotes/highlights` Controller
+- [ ] T048 [P] [US4] 撱箇? Angular `quote-wall` module嚗?? + 閮??亙嚗?- [ ] T049 [US4] 撘?嗉? UI嚗ntry 閰喟敦?????`frontend/.../quote-highlight-list.component.ts`
+- [ ] T050 [US4] ?湔 quickstart嚗閰?撽?甇仿?
 
 ---
 
-## Phase 6: User Story 4 - 高價值台詞牆（Priority P2）
-
-**Goal**：聚合社群收藏最多的引用，提供回到原紀錄/討論入口。  
-**Independent Test**：收藏台詞後能在台詞牆看到該引用並導回來源。
-
-### Tests
-
-- [ ] T043 [P] [US4] `/api/quotes/highlights` 合約測試
-- [ ] T044 [P] [US4] 前端 e2e（收藏引用 → 台詞牆展示）
-
-### Implementation
-
-- [ ] T045 [P] [US4] 建立 QuoteFavorite/QuoteAggregate migrations
-- [ ] T046 [US4] 實作 `QuoteWallService`（彙整收藏、排序、來源連結）
-- [ ] T047 [US4] 實作 `/api/quotes/highlights` Controller
-- [ ] T048 [P] [US4] 建立 Angular `quote-wall` module（卡片牆 + 討論入口）
-- [ ] T049 [US4] 引用收藏 UI（entry 詳細頁收藏按鈕）`frontend/.../quote-highlight-list.component.ts`
-- [ ] T050 [US4] 更新 quickstart：台詞牆驗證步驟
-
----
-
-## Phase 7: Polish & Cross-Cutting（Edge cases / 指標 / Traceability）
-
-- [ ] T051 [P] 建立作品版本去重服務 `backend/src/main/java/com/example/mediajournal/works/WorkMergeService.java`
-- [ ] T052 [P] 台詞截斷預覽與附件流程 `frontend/src/app/shared/components/quote-preview.component.ts`
-- [ ] T053 檢舉暫停/24h SLA 追蹤介面 `frontend/src/app/features/admin/moderation/moderation-dashboard.component.ts`
-- [ ] T054 專注清單上限提示與整理工具 `frontend/src/app/features/focus-hub/components/focus-limit-banner.component.ts`
-- [ ] T055 建立性能測試腳本並記錄結果 `infrastructure/perf/locustfile.py`
-- [ ] T056 [P] 建立通知 SLA 報表/儀表板 `backend/.../notifications/NotificationMetricsExporter.java`
-- [ ] T057 [P] 更新 quickstart + README（含 `/speckit.*` 流程與量測）`docs/README.md`, `specs/.../quickstart.md`
-- [ ] T058 [P] 全專案驗證（`mvn verify`, `pnpm lint`, `pnpm test`, Playwright）並寫入 tasks checklist
-- [ ] T059 建立互動率資料管線（`engagement_events` 表與 ingestor）`backend/.../analytics/EngagementIngestor.java`
-- [ ] T060 [P] 建立互動率儀表板與報表 `frontend/src/app/features/admin/analytics/engagement-dashboard.component.ts`
-- [ ] T061 壓測與通知 SLA 結果彙整，附報告連結並更新 Project 卡片狀態
-- [ ] T062 記錄 SC-004 互動率達成情形（更新 quickstart、Project 卡片與 README 附錄）
-
+## Phase 7: Polish & Cross-Cutting嚗dge cases / ?? / Traceability嚗?
+- [ ] T051 [P] 撱箇?雿???駁??? `backend/src/main/java/com/example/mediajournal/works/WorkMergeService.java`
+- [ ] T052 [P] ?啗??芣?汗??隞嗆?蝔?`frontend/src/app/shared/components/quote-preview.component.ts`
+- [ ] T053 瑼Ｚ??怠?/24h SLA 餈質馱隞 `frontend/src/app/features/admin/moderation/moderation-dashboard.component.ts`
+- [ ] T054 撠釣皜銝??內??極??`frontend/src/app/features/focus-hub/components/focus-limit-banner.component.ts`
+- [ ] T055 撱箇??扯皜祈岫?單銝西?????`infrastructure/perf/locustfile.py`
+- [ ] T056 [P] 撱箇?? SLA ?梯”/?銵冽 `backend/.../notifications/NotificationMetricsExporter.java`
+- [ ] T057 [P] ?湔 quickstart + README嚗 `/speckit.*` 瘚???皜穿?`docs/README.md`, `specs/.../quickstart.md`
+- [ ] T058 [P] ?典?獢?霅?`mvn verify`, `pnpm lint`, `pnpm test`, Playwright嚗蒂撖怠 tasks checklist
+- [ ] T059 撱箇?鈭????恣蝺?`engagement_events` 銵刻? ingestor嚗backend/.../analytics/EngagementIngestor.java`
+- [ ] T060 [P] 撱箇?鈭???銵冽?銵?`frontend/src/app/features/admin/analytics/engagement-dashboard.component.ts`
+- [ ] T061 憯葫? SLA 蝯?敶嚗??勗????銝行??Project ?∠????- [ ] T062 閮? SC-004 鈭?????敶ｇ??湔 quickstart?roject ?∠???README ??嚗?
 ---
 
 ## Dependencies & Execution Order
 
-1. Phase 1 → Phase 2 為所有任務前置。  
-2. Phase 3（US1）提供 MVP，完成後可在 Project board 更新卡片並 demo。  
-3. Phase 4（US2）與 Phase 5（US3）可在基礎完成後平行進行。  
-4. Phase 6 依賴 US1/US2 產出的資料。  
-5. Phase 7 收尾 Edge cases、觀測性、壓測與 traceability 流程。
-
+1. Phase 1 ??Phase 2 ?箸??遙??蝵柴? 
+2. Phase 3嚗S1嚗?靘?MVP嚗????臬 Project board ?湔?∠?銝?demo?? 
+3. Phase 4嚗S2嚗? Phase 5嚗S3嚗?典蝷???撟唾??脰??? 
+4. Phase 6 靘陷 US1/US2 ?Ｗ???? 
+5. Phase 7 ?嗅偏 Edge cases??皜祆扼?皜祈? traceability 瘚???
 ## Parallel Execution Examples
 
-- Phase 2 中 T008/T009/T010/T011 可平行。  
-- US1 中 T015 與 T018 可並行，再串接 T016/T017/T019。  
-- US2 後端 T026~T028 與前端 T029~T031 可分組進行。  
-- US3 的 T035/T036 與前端 T040 可同步，T038/T039 由 admin 團隊處理。  
-- US4 的 T045/T046 與 T048/T049 可分工。  
-- Phase 7 中 T055、T056、T059、T060、T061/T062 可交錯實作。
-
+- Phase 2 銝?T008/T009/T010/T011 ?臬像銵? 
+- US1 銝?T015 ??T018 ?臭蒂銵??葡??T016/T017/T019?? 
+- US2 敺垢 T026~T028 ??蝡?T029~T031 ?臬?蝯脰??? 
+- US3 ??T035/T036 ??蝡?T040 ?臬?甇伐?T038/T039 ??admin ?????? 
+- US4 ??T045/T046 ??T048/T049 ?臬?撌乓? 
+- Phase 7 銝?T055?056?059?060?061/T062 ?臭漱?臬祕雿?
 ## Implementation Strategy
 
-1. **MVP**：完成 Phase 1-3 即可交付個人觀影筆記與統計。  
-2. **Incremental**：依序合併 US2 → US3 → US4，每次皆可獨立 demo。  
-3. **Quality Gate**：Phase 7 任務確保 Edge cases、性能測試、互動率報表與 Project board traceability 都完成。
-
+1. **MVP**嚗???Phase 1-3 ?喳鈭支??犖閫敶梁?閮?蝯梯??? 
+2. **Incremental**嚗?摨?雿?US2 ??US3 ??US4嚗?甈∠??舐蝡?demo?? 
+3. **Quality Gate**嚗hase 7 隞餃?蝣箔? Edge cases?扯皜祈岫?????梯”??Project board traceability ?賢???
 ---
 
 ## Task Totals & Coverage
 
 - **Total tasks**: 63  
-- **US1 tasks**: 11（含 2 測試）  
-- **US2 tasks**: 9（含 2 測試）  
-- **US3 tasks**: 10（含 2 測試與推薦/審核）  
-- **US4 tasks**: 8（含 2 測試）  
-- **Parallel opportunities**: 18 個 `[P]` 任務  
-- **MVP 範圍**: T000~T023
+- **US1 tasks**: 11嚗 2 皜祈岫嚗? 
+- **US2 tasks**: 9嚗 2 皜祈岫嚗? 
+- **US3 tasks**: 10嚗 2 皜祈岫???撖拇嚗? 
+- **US4 tasks**: 8嚗 2 皜祈岫嚗? 
+- **Parallel opportunities**: 18 ??`[P]` 隞餃?  
+- **MVP 蝭?**: T000~T023
 
-所有任務均符合 `- [ ] T### [P?] [US?] 描述` 格式，且涵蓋 spec/plan 需求、Project board traceability 與壓測佐證流程。
+??遙??蝚血? `- [ ] T### [P?] [US?] ?膩` ?澆?嚗?瘨菔? spec/plan ?瘙roject board traceability ??皜砌?霅?蝔?
