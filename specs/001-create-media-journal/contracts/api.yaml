@@ -1,0 +1,228 @@
+﻿openapi: 3.0.3
+info:
+  title: Viewing Journal API
+  version: 0.1.0
+servers:
+  - url: https://api.example.com
+  - url: http://localhost:8080
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ViewingEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        workId:
+          type: string
+          format: uuid
+        watchedAt:
+          type: string
+          format: date-time
+        score:
+          type: integer
+          minimum: 1
+          maximum: 10
+        visibility:
+          type: string
+          enum: [PUBLIC, FOLLOWERS, PRIVATE]
+        reviewBody:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+      required: [workId, watchedAt, score, visibility]
+    DiscussionThread:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        body:
+          type: string
+        tagSlug:
+          type: string
+        workId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [ACTIVE, LOCKED]
+      required: [title, body]
+security:
+  - BearerAuth: []
+paths:
+  /api/entries:
+    get:
+      summary: 列出符合篩選條件的觀影紀錄
+      parameters:
+        - in: query
+          name: workId
+          schema:
+            type: string
+        - in: query
+          name: year
+          schema:
+            type: integer
+        - in: query
+          name: tag
+          schema:
+            type: string
+        - in: query
+          name: minScore
+          schema:
+            type: integer
+        - in: query
+          name: maxScore
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ViewingEntry'
+    post:
+      summary: 新增觀影紀錄
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ViewingEntry'
+      responses:
+        '201': { description: Created }
+  /api/entries/{entryId}:
+    patch:
+      summary: 更新觀影紀錄（部分欄位）
+      parameters:
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                score: { type: integer, minimum: 1, maximum: 10 }
+                reviewBody: { type: string }
+                tags:
+                  type: array
+                  items: { type: string }
+      responses:
+        '200': { description: Updated }
+  /api/discussions:
+    get:
+      summary: 依作品或標籤列出討論串
+      parameters:
+        - name: workId
+          in: query
+          schema:
+            type: string
+        - name: tag
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DiscussionThread'
+    post:
+      summary: 建立討論串
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscussionThread'
+      responses:
+        '201': { description: Created }
+  /api/discussions/{threadId}/replies:
+    post:
+      summary: 回覆討論串並可引用句子
+      parameters:
+        - in: path
+          name: threadId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body: { type: string }
+                parentId: { type: string }
+                quotedText: { type: string }
+              required: [body]
+      responses:
+        '201': { description: Created }
+  /api/focus:
+    post:
+      summary: 新增專注追蹤
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authorId: { type: string }
+                frequency:
+                  type: string
+                  enum: [INSTANT, DAILY, WEEKLY]
+              required: [authorId]
+      responses:
+        '201': { description: Created }
+  /api/notifications:
+    get:
+      summary: 取得尚未閱讀的站內通知
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: { type: string }
+                    type: { type: string }
+                    payload: { type: object }
+                    createdAt:
+                      type: string
+                      format: date-time
+  /api/moderation/cases:
+    get:
+      summary: 管理員檢視 24 小時內需處理的案件
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [PENDING, UNDER_REVIEW]
+      responses:
+        '200': { description: OK }
