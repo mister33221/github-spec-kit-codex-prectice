@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #f5f5f5;
+  background-color: #0f111a;
+}
+
+body[data-theme="high-contrast"] {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+body[data-theme="light"] {
+  color: #0f111a;
+  background-color: #ffffff;
+}
+
+* {
+  font-family: "Inter", "Noto Sans TC", system-ui, sans-serif;
+}
