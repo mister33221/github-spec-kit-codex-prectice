@@ -19,4 +19,3 @@ public record ViewingEntryRequest(
     String reviewBody,
     Set<String> tags,
     @Valid List<QuoteHighlightPayload> highlights) {}
-

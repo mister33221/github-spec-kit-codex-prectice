@@ -52,7 +52,8 @@ class EntriesApiTest {
             UUID.class);
     workId =
         jdbcTemplate.queryForObject(
-            "INSERT INTO works (title, release_year) VALUES ('測試作品',2024) RETURNING id", UUID.class);
+            "INSERT INTO works (title, release_year) VALUES ('測試作品',2024) RETURNING id",
+            UUID.class);
     jdbcTemplate.update(
         "INSERT INTO tags (slug, type, label) VALUES ('sci-fi','GENRE','科幻'), ('night','CUSTOM','夜晚')");
   }
@@ -145,8 +146,7 @@ class EntriesApiTest {
                 .content(objectMapper.writeValueAsString(patchRequest)))
         .andExpect(status().isOk());
 
-    ViewingEntry updated =
-        repository.findById(created.id()).orElseThrow();
+    ViewingEntry updated = repository.findById(created.id()).orElseThrow();
     assertThat(updated.getScore()).isEqualTo(8);
     assertThat(updated.getReviewBody()).isEqualTo("更新心得");
     assertThat(updated.getTags()).containsExactly("night");

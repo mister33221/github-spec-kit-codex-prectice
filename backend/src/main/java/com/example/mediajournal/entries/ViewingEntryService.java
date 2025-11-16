@@ -37,7 +37,8 @@ public class ViewingEntryService {
     ViewingEntry entry =
         repository
             .findById(entryId)
-            .orElseThrow(() -> new EntityNotFoundException("Entry %s not found".formatted(entryId)));
+            .orElseThrow(
+                () -> new EntityNotFoundException("Entry %s not found".formatted(entryId)));
     copyRequest(entry, request, false);
     return toResponse(entry);
   }

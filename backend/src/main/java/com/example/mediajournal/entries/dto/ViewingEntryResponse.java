@@ -16,4 +16,3 @@ public record ViewingEntryResponse(
     String reviewBody,
     Set<String> tags,
     List<QuoteHighlightPayload> highlights) {}
-
