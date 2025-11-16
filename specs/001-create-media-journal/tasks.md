@@ -38,14 +38,14 @@ Checkpoint：完成後可進入 User Story 階段，並在 Project board 將卡�
 
 ### Tests
 
-- [ ] T013 [P] [US1] `/api/entries` 合約/整合測試 `backend/src/test/java/com/example/mediajournal/entries/EntriesApiTest.java`
+- [X] T013 [P] [US1] `/api/entries` 合約/整合測試 `backend/src/test/java/com/example/mediajournal/entries/EntriesApiTest.java`
 - [ ] T014 [P] [US1] 前端 e2e（建立/編輯紀錄流程）`frontend/tests/e2e/entry-flow.spec.ts`
 
 ### Implementation
 
-- [ ] T015 [P] [US1] 建立 ViewingEntry/QuoteHighlight/Tag Entities 與 repositories
-- [ ] T016 [US1] 實作 `ViewingEntryService`（引用長度、標籤批次）`backend/.../entries/ViewingEntryService.java`
-- [ ] T017 [US1] 實作 `/api/entries` Controller（GET/POST/PATCH）
+- [X] T015 [P] [US1] 建立 ViewingEntry/QuoteHighlight/Tag Entities 與 repositories
+- [X] T016 [US1] 實作 `ViewingEntryService`（引用長度、標籤批次）`backend/.../entries/ViewingEntryService.java`
+- [X] T017 [US1] 實作 `/api/entries` Controller（GET/POST/PATCH）
 - [ ] T018 [P] [US1] 建立 Angular `entry-editor` module `frontend/src/app/features/entry-editor/`
 - [ ] T019 [US1] 建立 entry timeline component 與統計圖卡
 - [ ] T020 [US1] 實作 profile 統計/可見性 API `backend/src/main/java/com/example/mediajournal/profile/ProfileController.java`
