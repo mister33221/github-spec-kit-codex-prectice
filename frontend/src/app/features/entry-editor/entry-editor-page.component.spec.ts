@@ -39,8 +39,9 @@ describe('EntryEditorPageComponent', () => {
       providers: [{ provide: EntriesApiService, useValue: entriesApi }],
     }).compileComponents();
 
-    component = TestBed.createComponent(EntryEditorPageComponent)
-      .componentInstance;
+    component = TestBed.createComponent(
+      EntryEditorPageComponent,
+    ).componentInstance;
   });
 
   it('should create component and expose calendar controls', () => {

@@ -18,11 +18,15 @@
 }
 
 .panel::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at 85% 20%, rgba(56, 217, 130, 0.12), transparent 45%);
+  background: radial-gradient(
+    circle at 85% 20%,
+    rgba(56, 217, 130, 0.12),
+    transparent 45%
+  );
   mix-blend-mode: screen;
 }
 
@@ -56,7 +60,9 @@
   gap: 0.3rem;
   color: inherit;
   cursor: pointer;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .stepper .index {
@@ -117,7 +123,9 @@ select {
   background: rgba(5, 5, 5, 0.85);
   color: inherit;
   padding: 0.65rem 0.85rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 input:focus,
@@ -138,7 +146,7 @@ textarea {
   gap: 0.5rem;
 }
 
-.score-control input[type='range'] {
+.score-control input[type="range"] {
   accent-color: #1db954;
 }
 
@@ -188,16 +196,19 @@ button {
   cursor: pointer;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.2s ease;
 }
 
-button[type='submit'] {
+button[type="submit"] {
   background: linear-gradient(135deg, #1db954, #1ed760);
   color: #041308;
   box-shadow: 0 20px 40px rgba(29, 185, 84, 0.35);
 }
 
-button[type='submit']:hover {
+button[type="submit"]:hover {
   transform: translateY(-1px);
 }
 
@@ -393,7 +404,9 @@ button[disabled] {
   padding: 0.4rem 0;
   text-align: center;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .calendar-day.muted {

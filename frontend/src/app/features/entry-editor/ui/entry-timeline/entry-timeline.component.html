@@ -9,7 +9,10 @@
 
   <div *ngIf="loading" class="timeline-state">載入中...</div>
 
-  <ul *ngIf="!loading && entries?.length; else emptyState" class="timeline-list">
+  <ul
+    *ngIf="!loading && entries?.length; else emptyState"
+    class="timeline-list"
+  >
     <li
       *ngFor="let entry of entries; trackBy: trackById"
       class="timeline-card"
@@ -22,12 +25,17 @@
         </div>
         <div class="meta">
           <span>{{
-            entry.watchedAt ? (entry.watchedAt | date : 'yyyy/MM/dd HH:mm') : '未填寫時間'
+            entry.watchedAt
+              ? (entry.watchedAt | date: "yyyy/MM/dd HH:mm")
+              : "未填寫時間"
           }}</span>
-          <span class="visibility">{{ visibilityLabel[entry.visibility] }}</span>
+          <span class="visibility">{{
+            visibilityLabel[entry.visibility]
+          }}</span>
         </div>
         <p class="review" *ngIf="entry.reviewBody as review">
-          {{ review | slice : 0 : 120 }}<span *ngIf="review.length > 120">…</span>
+          {{ review | slice: 0 : 120
+          }}<span *ngIf="review.length > 120">…</span>
         </p>
         <div class="tags" *ngIf="entry.tags?.length">
           <span *ngFor="let tag of entry.tags">#{{ tag }}</span>

@@ -79,9 +79,7 @@ export class EntryEditorPageComponent {
     }),
     reviewBody: this.fb.control(''),
     tagsText: this.fb.control(''),
-    highlights: this.fb.array<HighlightFormGroup>([
-      this.buildHighlightGroup(),
-    ]),
+    highlights: this.fb.array<HighlightFormGroup>([this.buildHighlightGroup()]),
   });
 
   readonly controls = this.entryForm.controls;
@@ -178,20 +176,18 @@ export class EntryEditorPageComponent {
       ? this.entriesApi.updateEntry(entryId, payload)
       : this.entriesApi.createEntry(payload);
 
-    request$
-      .pipe(finalize(() => this.saving.set(false)))
-      .subscribe({
-        next: (entry) => {
-          this.statusMessage.set(
-            entryId ? '紀錄已更新' : '紀錄已建立並加入時間軸',
-          );
-          this.populateForm(entry);
-        },
-        error: (err) => {
-          this.statusMessage.set('儲存失敗，請稍後再試');
-          console.error('Failed to save entry', err);
-        },
-      });
+    request$.pipe(finalize(() => this.saving.set(false))).subscribe({
+      next: (entry) => {
+        this.statusMessage.set(
+          entryId ? '紀錄已更新' : '紀錄已建立並加入時間軸',
+        );
+        this.populateForm(entry);
+      },
+      error: (err) => {
+        this.statusMessage.set('儲存失敗，請稍後再試');
+        console.error('Failed to save entry', err);
+      },
+    });
   }
 
   resetFormForNewEntry(): void {
@@ -245,9 +241,7 @@ export class EntryEditorPageComponent {
     return {
       userId: raw.userId,
       workId: raw.workId,
-      watchedAt: raw.watchedAt
-        ? new Date(raw.watchedAt).toISOString()
-        : null,
+      watchedAt: raw.watchedAt ? new Date(raw.watchedAt).toISOString() : null,
       score: raw.score,
       visibility: raw.visibility,
       reviewBody: raw.reviewBody?.trim() || null,

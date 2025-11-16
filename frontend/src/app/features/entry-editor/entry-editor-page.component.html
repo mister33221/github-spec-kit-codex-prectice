@@ -3,7 +3,7 @@
     <header>
       <div>
         <p class="eyebrow">US1 · 建立觀影筆記</p>
-        <h2>{{ controls.entryId.value ? '編輯紀錄' : '新增紀錄' }}</h2>
+        <h2>{{ controls.entryId.value ? "編輯紀錄" : "新增紀錄" }}</h2>
         <p>
           完成核心欄位即可儲存，進階細節（標籤、金句）稍後再補充也沒問題，介面會記住你選擇的日期與語氣。
         </p>
@@ -38,7 +38,10 @@
               formControlName="workId"
               placeholder="movie-2025-oscar"
             />
-            <small class="error" *ngIf="controls.workId.invalid && controls.workId.touched">
+            <small
+              class="error"
+              *ngIf="controls.workId.invalid && controls.workId.touched"
+            >
               請輸入作品識別碼
             </small>
           </label>
@@ -51,7 +54,11 @@
                 <h3>{{ formatDisplayDate(controls.watchedAt.value) }}</h3>
                 <p>{{ formatWeekdayDisplay(controls.watchedAt.value) }}</p>
               </div>
-              <button type="button" class="ghost calendar-toggle" (click)="toggleCalendar()">
+              <button
+                type="button"
+                class="ghost calendar-toggle"
+                (click)="toggleCalendar()"
+              >
                 切換日曆
               </button>
             </div>
@@ -92,7 +99,10 @@
           <label>
             <span>可見性</span>
             <select formControlName="visibility">
-              <option *ngFor="let option of visibilityOptions" [ngValue]="option">
+              <option
+                *ngFor="let option of visibilityOptions"
+                [ngValue]="option"
+              >
                 {{ visibilityLabel[option] }}
               </option>
             </select>
@@ -115,7 +125,9 @@
             * 核心欄位完成後即可儲存，金句與標籤可在下一步補齊。
           </div>
           <div class="action-buttons">
-            <button type="button" class="ghost" (click)="nextStep()">下一步 · 進階細節</button>
+            <button type="button" class="ghost" (click)="nextStep()">
+              下一步 · 進階細節
+            </button>
             <button type="submit" [disabled]="saving()">直接儲存</button>
           </div>
         </div>
@@ -187,17 +199,27 @@
               </label>
               <label>
                 <span>時間提示</span>
-                <input type="text" formControlName="timestampHint" placeholder="01:12:54 或 EP03" />
+                <input
+                  type="text"
+                  formControlName="timestampHint"
+                  placeholder="01:12:54 或 EP03"
+                />
               </label>
-              <button type="button" class="link" (click)="removeHighlight(i)">刪除此金句</button>
+              <button type="button" class="link" (click)="removeHighlight(i)">
+                刪除此金句
+              </button>
             </div>
-            <button type="button" class="ghost" (click)="addHighlight()">+ 新增金句</button>
+            <button type="button" class="ghost" (click)="addHighlight()">
+              + 新增金句
+            </button>
           </div>
         </div>
 
         <div class="step-actions">
           <div class="action-buttons wide">
-            <button type="button" class="ghost" (click)="previousStep()">返回基本資訊</button>
+            <button type="button" class="ghost" (click)="previousStep()">
+              返回基本資訊
+            </button>
             <button type="submit" [disabled]="saving()">儲存紀錄</button>
           </div>
         </div>
