@@ -1,4 +1,4 @@
-# Repository Guidelines
+﻿# Repository Guidelines
 
 ## Project Structure & Module Organization
 This repo currently ships two key paths: `spec-kit-learning.md`, a Traditional-Chinese walkthrough of Spec Driven Development, and `.idea/`, which stores JetBrains configurations for the Copilot + Spec Kit lab. Keep conceptual specs beside the tutorial by adding new notes under `specs/<sequence>-<slug>/` (for example, `specs/001-metronome-web-app/`). Treat `AGENTS.md` as the quick-start overlay for AI contributors and refresh it whenever tooling changes.

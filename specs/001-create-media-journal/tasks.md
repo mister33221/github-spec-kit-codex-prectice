@@ -48,8 +48,8 @@ Checkpoint：完成後可進入 User Story 階段，並在 Project board 將卡�
 - [X] T017 [US1] 實作 `/api/entries` Controller（GET/POST/PATCH）
 - [X] T018 [P] [US1] 建立 Angular `entry-editor` module `frontend/src/app/features/entry-editor/`
 - [X] T019 [US1] 建立 entry timeline component 與統計圖卡
-- [ ] T020 [US1] 實作 profile 統計/可見性 API `backend/src/main/java/com/example/mediajournal/profile/ProfileController.java`
-- [ ] T021 [US1] 建立 `ProfileSummaryService`（平均評分、常用標籤、可見性設定）
+- [X] T020 [US1] 實作 profile 統計/可見性 API `backend/src/main/java/com/example/mediajournal/profile/ProfileController.java`
+- [X] T021 [US1] 建立 `ProfileSummaryService`（平均評分、常用標籤、可見性設定）
 - [ ] T022 [US1] 前端個人版面設定頁（公開/半公開/私人）
 - [ ] T023 [US1] 更新 quickstart（新增/編輯紀錄與可見性驗證）
 
