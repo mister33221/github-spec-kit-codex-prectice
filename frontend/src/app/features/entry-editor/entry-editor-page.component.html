@@ -1,0 +1,209 @@
+<div class="editor-grid" [formGroup]="entryForm">
+  <section class="panel form-panel">
+    <header>
+      <div>
+        <p class="eyebrow">US1 · 建立觀影筆記</p>
+        <h2>{{ controls.entryId.value ? '編輯紀錄' : '新增紀錄' }}</h2>
+        <p>
+          完成核心欄位即可儲存，進階細節（標籤、金句）稍後再補充也沒問題，介面會記住你選擇的日期與語氣。
+        </p>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="ghost" (click)="resetFormForNewEntry()">
+          新增空白稿
+        </button>
+      </div>
+    </header>
+
+    <form (ngSubmit)="saveEntry()" novalidate>
+      <div class="stepper">
+        <button
+          type="button"
+          *ngFor="let step of steps; let i = index"
+          (click)="goToStep(i)"
+          [class.active]="currentStep() === i"
+        >
+          <span class="index">{{ i + 1 }}</span>
+          <span class="label">{{ step.label }}</span>
+          <small>{{ step.description }}</small>
+        </button>
+      </div>
+
+      <section class="step-panel" *ngIf="currentStep() === 0">
+        <div class="field-row important">
+          <label>
+            <span>作品 ID</span>
+            <input
+              type="text"
+              formControlName="workId"
+              placeholder="movie-2025-oscar"
+            />
+            <small class="error" *ngIf="controls.workId.invalid && controls.workId.touched">
+              請輸入作品識別碼
+            </small>
+          </label>
+
+          <div class="calendar-card">
+            <input type="hidden" formControlName="watchedAt" />
+            <div class="calendar-top">
+              <div class="calendar-summary">
+                <span class="label">觀影時間</span>
+                <h3>{{ formatDisplayDate(controls.watchedAt.value) }}</h3>
+                <p>{{ formatWeekdayDisplay(controls.watchedAt.value) }}</p>
+              </div>
+              <button type="button" class="ghost calendar-toggle" (click)="toggleCalendar()">
+                切換日曆
+              </button>
+            </div>
+            <div class="calendar-popover" *ngIf="calendarVisible()">
+              <div class="calendar-header">
+                <button type="button" (click)="prevCalendarMonth()">‹</button>
+                <div class="month-label">{{ calendarMonthLabel() }}</div>
+                <button type="button" (click)="nextCalendarMonth()">›</button>
+              </div>
+              <div class="calendar-grid">
+                <span class="weekday" *ngFor="let weekday of weekdayLabels">
+                  {{ weekday }}
+                </span>
+                <button
+                  type="button"
+                  class="calendar-day"
+                  *ngFor="let day of calendarDays()"
+                  [class.muted]="!day.inCurrentMonth"
+                  [class.today]="day.isToday"
+                  [class.selected]="day.isSelected"
+                  (click)="selectCalendarDay(day)"
+                >
+                  {{ day.label }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label>
+            <span>評分（1-10）</span>
+            <div class="score-control">
+              <input type="range" min="1" max="10" formControlName="score" />
+              <span class="score-value">{{ controls.score.value }}</span>
+            </div>
+          </label>
+          <label>
+            <span>可見性</span>
+            <select formControlName="visibility">
+              <option *ngFor="let option of visibilityOptions" [ngValue]="option">
+                {{ visibilityLabel[option] }}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <div class="field-column">
+          <label>
+            <span>觀影心得</span>
+            <textarea
+              formControlName="reviewBody"
+              rows="6"
+              placeholder="寫下最關鍵的觀影感受，亦支援 Markdown 語法（**粗體**、*斜體*、> 引用…）。"
+            ></textarea>
+          </label>
+        </div>
+
+        <div class="step-actions">
+          <div class="hint">
+            * 核心欄位完成後即可儲存，金句與標籤可在下一步補齊。
+          </div>
+          <div class="action-buttons">
+            <button type="button" class="ghost" (click)="nextStep()">下一步 · 進階細節</button>
+            <button type="submit" [disabled]="saving()">直接儲存</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="step-panel" *ngIf="currentStep() === 1">
+        <div class="optional-block">
+          <button
+            type="button"
+            class="optional-header"
+            (click)="toggleTagsSection()"
+            [attr.aria-expanded]="showTagsSection()"
+          >
+            <div>
+              <span>標籤與分類</span>
+              <small>選填，用於統計與搜尋</small>
+            </div>
+            <span class="count">
+              {{ countTags(controls.tagsText.value) }} 個標籤
+            </span>
+          </button>
+          <div class="optional-body" *ngIf="showTagsSection()">
+            <label>
+              <span>標籤（以逗號分隔）</span>
+              <input
+                type="text"
+                formControlName="tagsText"
+                placeholder="noir, cyberpunk, award-2025"
+              />
+              <small class="hint">透過逗號快速新增多個標籤</small>
+            </label>
+          </div>
+        </div>
+
+        <div class="optional-block">
+          <button
+            type="button"
+            class="optional-header"
+            (click)="toggleHighlightsSection()"
+            [attr.aria-expanded]="showHighlightsSection()"
+          >
+            <div>
+              <span>金句 / 關鍵畫面</span>
+              <small>選填，至少輸入原文，可加入翻譯與時間提示</small>
+            </div>
+            <span class="count">{{ highlightsArray.length }} 筆</span>
+          </button>
+          <div class="optional-body" *ngIf="showHighlightsSection()">
+            <div
+              class="highlight-item"
+              *ngFor="let highlight of highlightsArray.controls; let i = index"
+              [formGroup]="highlight"
+            >
+              <label>
+                <span>原文金句</span>
+                <textarea
+                  formControlName="originalText"
+                  rows="3"
+                  placeholder="例：I see the world through a different lens."
+                ></textarea>
+              </label>
+              <label>
+                <span>翻譯/備註</span>
+                <textarea
+                  formControlName="translatedText"
+                  rows="2"
+                  placeholder="例：我用不同視角看世界。"
+                ></textarea>
+              </label>
+              <label>
+                <span>時間提示</span>
+                <input type="text" formControlName="timestampHint" placeholder="01:12:54 或 EP03" />
+              </label>
+              <button type="button" class="link" (click)="removeHighlight(i)">刪除此金句</button>
+            </div>
+            <button type="button" class="ghost" (click)="addHighlight()">+ 新增金句</button>
+          </div>
+        </div>
+
+        <div class="step-actions">
+          <div class="action-buttons wide">
+            <button type="button" class="ghost" (click)="previousStep()">返回基本資訊</button>
+            <button type="submit" [disabled]="saving()">儲存紀錄</button>
+          </div>
+        </div>
+      </section>
+
+      <p class="status" *ngIf="statusMessage() as message">{{ message }}</p>
+    </form>
+  </section>
+</div>

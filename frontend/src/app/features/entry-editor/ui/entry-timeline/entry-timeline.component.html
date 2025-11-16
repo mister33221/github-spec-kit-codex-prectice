@@ -1,0 +1,47 @@
+<section class="timeline">
+  <div class="timeline-header">
+    <div>
+      <h2>時間軸</h2>
+      <p>點擊紀錄即可載入表單，或建立全新紀錄。</p>
+    </div>
+    <button type="button" class="ghost" (click)="createNew()">+ 新紀錄</button>
+  </div>
+
+  <div *ngIf="loading" class="timeline-state">載入中...</div>
+
+  <ul *ngIf="!loading && entries?.length; else emptyState" class="timeline-list">
+    <li
+      *ngFor="let entry of entries; trackBy: trackById"
+      class="timeline-card"
+      [class.active]="entry.id === activeEntryId"
+    >
+      <button type="button" (click)="onSelect(entry.id)">
+        <div class="card-header">
+          <span class="work">{{ entry.workId }}</span>
+          <span class="score">{{ entry.score }}/10</span>
+        </div>
+        <div class="meta">
+          <span>{{
+            entry.watchedAt ? (entry.watchedAt | date : 'yyyy/MM/dd HH:mm') : '未填寫時間'
+          }}</span>
+          <span class="visibility">{{ visibilityLabel[entry.visibility] }}</span>
+        </div>
+        <p class="review" *ngIf="entry.reviewBody as review">
+          {{ review | slice : 0 : 120 }}<span *ngIf="review.length > 120">…</span>
+        </p>
+        <div class="tags" *ngIf="entry.tags?.length">
+          <span *ngFor="let tag of entry.tags">#{{ tag }}</span>
+        </div>
+        <div class="highlights" *ngIf="entry.highlights?.length">
+          金句 {{ entry.highlights.length }} 則
+        </div>
+      </button>
+    </li>
+  </ul>
+
+  <ng-template #emptyState>
+    <div class="timeline-state muted">
+      尚未有任何紀錄，可先填寫左側表單後儲存。
+    </div>
+  </ng-template>
+</section>
