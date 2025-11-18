@@ -1,0 +1,4 @@
+---
+alwaysApply: true
+---
+使用繁體中文產生commit message。並在每一個commit message前加上 "Kai:" 前綴。
